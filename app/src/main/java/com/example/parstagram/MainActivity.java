@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String TAG = "MainActivity";
     public static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 42;
     private Button logoutBtn;
+    private Button feedButton;
     private EditText etDescription;
     private Button btnCaptureImage;
     private ImageView ivPostImage;
@@ -50,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         btnCaptureImage = findViewById(R.id.btnCaptureImage);
         ivPostImage = findViewById(R.id.ivPostImage);
         btnSubmit = findViewById(R.id.btnSubmit);
+        feedButton = findViewById(R.id.feedButton);
 
         //queryPosts();
 
@@ -87,7 +89,17 @@ public class MainActivity extends AppCompatActivity {
                 launchCamera();
             }
         });
+
+        feedButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, FeedActivity.class);
+                startActivity(i);
+                //finish();
+            }
+        });
     }
+
 
     private void launchCamera() {
         // create Intent to take a picture and return control to the calling application
