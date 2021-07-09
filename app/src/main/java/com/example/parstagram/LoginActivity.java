@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.parse.LogInCallback;
@@ -26,10 +27,11 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        getSupportActionBar().hide();
 
         //checks if the user is already logged in --> takes user straight to home page
         if (ParseUser.getCurrentUser() != null) {
-            goMainActivity();
+            goFeedActivity();
         }
 
         etUsername = findViewById(R.id.etUsername);
@@ -60,15 +62,15 @@ public class LoginActivity extends AppCompatActivity {
                     return;
                 }
                 //if request succeeds (e is not null), navigate to the main activity
-                goMainActivity();
+                goFeedActivity();
                 Toast.makeText(LoginActivity.this, "Success!", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    //function to navigate to main activity (instagram home page)
-    private void goMainActivity() {
-        Intent i = new Intent(this, MainActivity.class);
+    //function to navigate to feed activity (instagram home page)
+    private void goFeedActivity() {
+        Intent i = new Intent(this, FeedActivity.class);
         startActivity(i);
         finish();
     }

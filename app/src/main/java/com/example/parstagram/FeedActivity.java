@@ -1,7 +1,10 @@
 package com.example.parstagram;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -10,6 +13,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.parse.FindCallback;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
 import org.json.JSONArray;
 import org.parceler.Parcel;
@@ -25,6 +29,7 @@ public class FeedActivity extends AppCompatActivity{
     protected List<Post> allPosts;
     private RecyclerView rvPosts;
     private SwipeRefreshLayout swipeContainer;
+    private final int REQUEST_CODE = 20;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,17 +65,13 @@ public class FeedActivity extends AppCompatActivity{
         rvPosts.setLayoutManager(new LinearLayoutManager(this));
         // query posts from Parstagram
         queryPosts();
-    }
 
-    /*
-    public void fetchTimelineAsync(int page) {
-        adapter.clear();
-        adapter.addAll(allPosts);
-        queryPosts();
-        swipeContainer.setRefreshing(false);
+        //set IG logo in actionbar
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setLogo(R.drawable.nav_logo_whiteout);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
+        getSupportActionBar().setTitle("");
     }
-
-     */
 
     private void queryPosts() {
         // specify what type of data we want to query - Post.class
@@ -101,5 +102,34 @@ public class FeedActivity extends AppCompatActivity{
                 adapter.notifyDataSetChanged();
             }
         });
+    }
+
+    //inflate actionbar
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    // comes into play when an item in the actionbar is clicked
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // if the compose icon is tapped, navigate to the compose activity (aka main activity)
+        if (item.getItemId() == R.id.compose) {
+            Intent i = new Intent(FeedActivity.this, MainActivity.class);
+            startActivity(i);
+        }
+
+        // if the logout icon is tapped, log out + navigate to the login screen
+        if (item.getItemId() == R.id.logout) {
+            ParseUser.logOut();
+            ParseUser currentUser = ParseUser.getCurrentUser();
+            Intent i = new Intent(FeedActivity.this, LoginActivity.class);
+            startActivity(i);
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
