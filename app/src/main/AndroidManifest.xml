@@ -38,5 +38,9 @@
         <activity android:name=".PostDetailsActivity"
             tools:ignore="DuplicateActivity">
         </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 </manifest>

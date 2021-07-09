@@ -39,7 +39,7 @@ public class PostDetailsActivity extends AppCompatActivity {
         post = (Post) Parcels.unwrap(getIntent().getParcelableExtra(Post.class.getSimpleName()));
         Log.d("PostDetailsActivity", String.format("Showing details for '%s'", post.getDescription()));
 
-        tvNameDetails.setText(post.getUser().getUsername());
+        tvNameDetails.setText("@" + post.getUser().getUsername());
         tvCaptionDetails.setText(post.getDescription());
         ParseFile image = post.getImage();
         if (image != null) {
