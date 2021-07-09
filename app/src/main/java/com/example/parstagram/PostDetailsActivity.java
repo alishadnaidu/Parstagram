@@ -15,13 +15,15 @@ import org.parceler.Parcels;
 import java.util.Date;
 
 public class PostDetailsActivity extends AppCompatActivity {
-    Post post;
+    private Post post;
 
     //view objects
-    TextView tvNameDetails;
-    TextView tvTimestampDetails;
-    TextView tvCaptionDetails;
-    ImageView ivImageDetails;
+    private TextView tvNameDetails;
+    private TextView tvTimestampDetails;
+    private TextView tvCaptionDetails;
+    private ImageView ivImageDetails;
+    private Date createdAt;
+    private String timeAgo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +46,8 @@ public class PostDetailsActivity extends AppCompatActivity {
             Glide.with(PostDetailsActivity.this).load(image.getUrl()).into(ivImageDetails);
         }
 
-        Date createdAt = post.getCreatedAt();
-        String timeAgo = Post.calculateTimeAgo(createdAt);
+        createdAt = post.getCreatedAt();
+        timeAgo = Post.calculateTimeAgo(createdAt);
         tvTimestampDetails.setText(timeAgo);
 
 

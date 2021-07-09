@@ -36,10 +36,10 @@ public class FeedActivity extends AppCompatActivity{
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                // Your code to refresh the list here.
-                // Make sure you call swipeContainer.setRefreshing(false)
-                // once the network request has completed successfully.
-                fetchTimelineAsync(0);
+                adapter.clear();
+                adapter.addAll(allPosts);
+                queryPosts();
+                swipeContainer.setRefreshing(false);
             }
         });
         // Configure the refreshing colors
@@ -62,31 +62,15 @@ public class FeedActivity extends AppCompatActivity{
         queryPosts();
     }
 
+    /*
     public void fetchTimelineAsync(int page) {
         adapter.clear();
         adapter.addAll(allPosts);
         queryPosts();
         swipeContainer.setRefreshing(false);
-        /*
-        // Send the network request to fetch the updated data
-        // `client` here is an instance of Android Async HTTP
-        // getHomeTimeline is an example endpoint.
-        client.getHomeTimeline(new JsonHttpResponseHandler() {
-            public void onSuccess(JSONArray json) {
-                // Remember to CLEAR OUT old items before appending in the new ones
-                adapter.clear();
-                // ...the data has come back, add new items to your adapter...
-                adapter.addAll(...);
-                // Now we call setRefreshing(false) to signal refresh has finished
-                swipeContainer.setRefreshing(false);
-            }
-
-            public void onFailure(Throwable e) {
-                Log.d("DEBUG", "Fetch timeline error: " + e.toString());
-            }
-        });
-         */
     }
+
+     */
 
     private void queryPosts() {
         // specify what type of data we want to query - Post.class

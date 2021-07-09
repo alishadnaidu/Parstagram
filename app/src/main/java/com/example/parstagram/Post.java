@@ -12,8 +12,8 @@ import org.parceler.Parcel;
 import java.util.Date;
 
 @ParseClassName("Post")
-@Parcel(analyze = Post.class)
 public class Post extends ParseObject {
+    //must have public qualifier for Parcel so cannot be private
     public static final String KEY_DESCRIPTION = "description";
     public static final String KEY_IMAGE = "image";
     public static final String KEY_USER = "user";
@@ -64,15 +64,15 @@ public class Post extends ParseObject {
             } else if (diff < 2 * MINUTE_MILLIS) {
                 return "a minute ago";
             } else if (diff < 50 * MINUTE_MILLIS) {
-                return diff / MINUTE_MILLIS + " m";
+                return diff / MINUTE_MILLIS + "m ago";
             } else if (diff < 90 * MINUTE_MILLIS) {
                 return "an hour ago";
             } else if (diff < 24 * HOUR_MILLIS) {
-                return diff / HOUR_MILLIS + " h";
+                return diff / HOUR_MILLIS + "h ago";
             } else if (diff < 48 * HOUR_MILLIS) {
                 return "yesterday";
             } else {
-                return diff / DAY_MILLIS + " d";
+                return diff / DAY_MILLIS + "d ago";
             }
         } catch (Exception e) {
             Log.i("Error:", "getRelativeTimeAgo failed", e);

@@ -32,8 +32,8 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final String TAG = "MainActivity";
-    public static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 42;
+    private static final String TAG = "MainActivity";
+    private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 42;
     private Button logoutBtn;
     private Button feedButton;
     private EditText etDescription;
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView ivPostImage;
     private Button btnSubmit;
     private File photoFile;
-    public String photoFileName = "photo.jpg";
+    private String photoFileName = "photo.jpg";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
         btnSubmit = findViewById(R.id.btnSubmit);
         feedButton = findViewById(R.id.feedButton);
 
-        //queryPosts();
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,7 +96,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, FeedActivity.class);
                 startActivity(i);
-                //finish();
             }
         });
     }
