@@ -12,6 +12,7 @@ import com.parse.FindCallback;
 import com.parse.ParseQuery;
 
 import org.json.JSONArray;
+import org.parceler.Parcel;
 
 import java.text.ParseException;
 import java.util.ArrayList;
