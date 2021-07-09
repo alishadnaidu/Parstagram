@@ -68,6 +68,12 @@ public class MainActivity extends AppCompatActivity {
                 }
                 ParseUser currentUser = ParseUser.getCurrentUser();
                 savePost(description, currentUser, photoFile);
+
+                //navigate to feed when new post is submitted, automatically "refresh"
+                Intent intent = new Intent(MainActivity.this, FeedActivity.class);
+                startActivity(intent);
+                queryPosts();
+
             }
         });
 

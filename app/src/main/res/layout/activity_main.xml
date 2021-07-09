@@ -20,15 +20,16 @@
 
     <Button
         android:id="@+id/btnCaptureImage"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_below="@+id/etDescription"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="15dp"
-        android:background="#FFA2C3"
+        android:layout_alignParentStart="false"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="148dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/camera_black"
         android:foreground="?android:attr/selectableItemBackground"
-        android:text="Take Picture"
+        android:textSize="20sp"
         app:backgroundTint="@null" />
 
     <ImageView
@@ -47,10 +48,11 @@
         android:layout_below="@+id/ivPostImage"
         android:layout_alignParentStart="true"
         android:layout_marginTop="5dp"
-        android:background="#F8A7C2"
+        android:background="#746CF1"
         android:foreground="?android:attr/selectableItemBackground"
-        android:text="Submit"
-        android:textColor="#E91E63"
+        android:text="POST"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
         app:backgroundTint="@null" />
 
 </RelativeLayout>
